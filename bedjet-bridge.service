@@ -1,0 +1,17 @@
+[Unit]
+Description=BedJet V3 BLE-to-MQTT Bridge
+After=bluetooth.target dbus.service
+Wants=bluetooth.target
+
+[Service]
+Type=simple
+User=simon
+Group=simon
+WorkingDirectory=/opt/bedjet-bridge
+ExecStart=/usr/bin/python3 /opt/bedjet-bridge/bedjet_bridge.py
+Restart=always
+RestartSec=10
+SupplementaryGroups=bluetooth
+
+[Install]
+WantedBy=multi-user.target
